@@ -18,6 +18,13 @@
         </nav>
         <div class='d-flex justify-content-center'>
             <form class="form-check col-5" action="/shows/{{edit.id}}/edit" method="post">
+                {% if messages %}
+                    <ul class="messages alert-danger">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 {% csrf_token %}
                 <label for="title">Title:</label>
                 <input class="form-control mb-3" type="text" name="title" value="{{edit.title}}">
